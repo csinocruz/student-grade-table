@@ -10,6 +10,7 @@ $(document).ready();
 /**
  * Define all global variables here.  
  */
+
 /***********************
  * student_array - global array to hold student objects
  * @type {Array}
@@ -27,6 +28,7 @@ $(document).ready();
 * initializes the application, including adding click handlers and pulling in any data from the server, in later versions
 */
 function initializeApp(){
+
 }
 
 /***************************************************************************************************
@@ -36,6 +38,7 @@ function initializeApp(){
 *     
 */
 function addClickHandlersToElements(){
+
 }
 
 /***************************************************************************************************
@@ -45,7 +48,9 @@ function addClickHandlersToElements(){
        none
  */
 function handleAddClicked(){
+
 }
+
 /***************************************************************************************************
  * handleCancelClicked - Event Handler when user clicks the cancel button, should clear out student form
  * @param: {undefined} none
@@ -53,7 +58,9 @@ function handleAddClicked(){
  * @calls: clearAddStudentFormInputs
  */
 function handleCancelClick(){
+
 }
+
 /***************************************************************************************************
  * addStudent - creates a student objects based on input fields in the form and adds the object to global student array
  * @param {undefined} none
@@ -61,18 +68,23 @@ function handleCancelClick(){
  * @calls clearAddStudentFormInputs, updateStudentList
  */
 function addStudent(){
+
 }
+
 /***************************************************************************************************
  * clearAddStudentForm - clears out the form values based on inputIds variable
  */
 function clearAddStudentFormInputs(){
+
 }
+
 /***************************************************************************************************
  * renderStudentOnDom - take in a student object, create html elements from the values and then append the elements
  * into the .student_list tbody
  * @param {object} studentObj a single student object with course, name, and grade inside
  */
 function renderStudentOnDom(){
+
 }
 
 /***************************************************************************************************
@@ -84,19 +96,23 @@ function renderStudentOnDom(){
 function updateStudentList(){
   
 }
+
 /***************************************************************************************************
  * calculateGradeAverage - loop through the global student array and calculate average grade and return that value
  * @param: {array} students  the array of student objects
  * @returns {number}
  */
 function calculateGradeAverage(){
+
 }
+
 /***************************************************************************************************
  * renderGradeAverage - updates the on-page grade average
  * @param: {number} average    the grade average
  * @returns {undefined} none
  */
 function renderGradeAverage(){
+      
 }
 
 
