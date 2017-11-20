@@ -5,11 +5,24 @@
 /**
  * Listen for the document to load and initialize the application
  */
-$(document).ready();
+$(document).ready(function() {
+      initializeApp();
+});
 
 /**
  * Define all global variables here.  
  */
+
+var student_array = [
+      {     name: 'John', 
+            course: 'Aerospace', 
+            grade: 90
+      },
+      {     name: 'Betty', 
+            course: 'Carpentry', 
+            grade: 90
+      }
+];
 
 /***********************
  * student_array - global array to hold student objects
@@ -28,7 +41,7 @@ $(document).ready();
 * initializes the application, including adding click handlers and pulling in any data from the server, in later versions
 */
 function initializeApp(){
-
+      addClickHandlersToElements();
 }
 
 /***************************************************************************************************
@@ -38,7 +51,8 @@ function initializeApp(){
 *     
 */
 function addClickHandlersToElements(){
-
+      $('.addButton').click(handleAddClicked);
+      $('.cancelButton').click(handleCancelClick);
 }
 
 /***************************************************************************************************
@@ -48,7 +62,7 @@ function addClickHandlersToElements(){
        none
  */
 function handleAddClicked(){
-
+      console.log('add button clicked!');
 }
 
 /***************************************************************************************************
@@ -58,7 +72,7 @@ function handleAddClicked(){
  * @calls: clearAddStudentFormInputs
  */
 function handleCancelClick(){
-
+      console.log('cancel button clicked!');
 }
 
 /***************************************************************************************************
