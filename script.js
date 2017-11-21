@@ -15,7 +15,7 @@ $(document).ready(function() {
 
 var student_array = [
       {     name: 'John', 
-            course: 'Aerospace', 
+            course: 'Magic', 
             grade: 90
       },
       {     name: 'Betty', 
@@ -62,16 +62,11 @@ function addClickHandlersToElements(){
        none
  */
 function handleAddClicked(){
-      var name = $('#studentName').val();
-      var course = $('#studentCourse').val();
-      var grade = parseInt($('#studentGrade').val());
-      var student = {
-            'name': name,
-            'course': course,
-            'grade': grade
+      if ($('#studentName').val() === '' || $('#studentCourse').val() === '' || $('#studentGrade').val() === '') {
+            console.log('Must enter in a valid name');
+      } else {
+            addStudent();
       }
-      student_array.push(student);
-      renderStudentOnDom(student);
 }
 
 /***************************************************************************************************
@@ -81,6 +76,7 @@ function handleAddClicked(){
  * @calls: clearAddStudentFormInputs
  */
 function handleCancelClick(){
+      clearAddStudentFormInputs();
       console.log('cancel button clicked!');
 }
 
@@ -91,14 +87,27 @@ function handleCancelClick(){
  * @calls clearAddStudentFormInputs, updateStudentList
  */
 function addStudent(){
-
+      var name = $('#studentName').val();
+      var course = $('#studentCourse').val();
+      var grade = parseInt($('#studentGrade').val());
+      var student = {
+            'name': name,
+            'course': course,
+            'grade': grade
+      }
+      student_array.push(student);
+      clearAddStudentFormInputs();
+      updateStudentList(student_array);
+      return student;
 }
 
 /***************************************************************************************************
  * clearAddStudentForm - clears out the form values based on inputIds variable
  */
 function clearAddStudentFormInputs(){
-
+      $('#studentName').val('');
+      $('#studentCourse').val('');
+      $('#studentGrade').val('');
 }
 
 /***************************************************************************************************
@@ -107,10 +116,11 @@ function clearAddStudentFormInputs(){
  * @param {object} studentObj a single student object with course, name, and grade inside
  */
 function renderStudentOnDom(studentObj){
-      var row = $('<tr>').append(data);
-      var data = $('<td>').text(studentObj.name);
-
-      $('.student-table.body').append(row);
+      var $name = $('<td>').text(studentObj.name);
+      var $course = $('<td>').text(studentObj.course);
+      var $grade = $('<td>').text(studentObj.grade);
+      var $row = $('<tr>').append($name, $course, $grade);
+      $('tbody').append($row);
       console.log('renderStudentOnDom has been called!');
 }
 
@@ -120,8 +130,14 @@ function renderStudentOnDom(studentObj){
  * @returns {undefined} none
  * @calls renderStudentOnDom, calculateGradeAverage, renderGradeAverage
  */
-function updateStudentList(){
-  
+function updateStudentList(students){
+      for (var i=0; i<students.length; i++) {
+            renderStudentOnDom(students[i]);
+      }
+      
+      calculateGradeAverage();
+      renderGradeAverage();
+      console.log('updateStudentList function has been called!');
 }
 
 /***************************************************************************************************
@@ -130,7 +146,7 @@ function updateStudentList(){
  * @returns {number}
  */
 function calculateGradeAverage(){
-
+      console.log('calculateGradeAverage has been called');
 }
 
 /***************************************************************************************************
@@ -139,7 +155,7 @@ function calculateGradeAverage(){
  * @returns {undefined} none
  */
 function renderGradeAverage(){
-      
+      console.log('renderGradeAverage has been called');
 }
 
 
