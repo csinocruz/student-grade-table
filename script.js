@@ -13,6 +13,7 @@ $(document).ready(function() {
  * Define all global variables here.  
  */
 
+var calculatedGradeAvg = null;
 var student_array = [
       {     name: 'John', 
             course: 'Magic', 
@@ -150,6 +151,13 @@ function updateStudentList(students){
  * @returns {number}
  */
 function calculateGradeAverage(){
+      var sum = 0;
+      //sum of all the grades divided by the count
+      for (var i=0; i<student_array.length; i++) {
+            sum += student_array[i].grade;
+      }
+      calculatedGradeAvg = Math.floor(sum/student_array.length);
+      console.log(calculatedGradeAvg);
       console.log('calculateGradeAverage has been called');
 }
 
@@ -159,6 +167,7 @@ function calculateGradeAverage(){
  * @returns {undefined} none
  */
 function renderGradeAverage(){
+      $('.avgGrade').text(calculatedGradeAvg);
       console.log('renderGradeAverage has been called');
 }
 
