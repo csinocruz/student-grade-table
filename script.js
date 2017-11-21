@@ -1,5 +1,8 @@
 $(document).ready(function() {
-      initializeApp();
+      initializeApp(),
+      $('.student-table-body').click('button', function() {
+            console.log('EVENT DELEGATION SON!!');
+      })
 });
 
 var calculatedGradeAvg = null;
@@ -63,7 +66,7 @@ function renderStudentOnDom(studentObj){
       var $name = $('<td>').text(studentObj.name);
       var $course = $('<td>').text(studentObj.course);
       var $grade = $('<td>').text(studentObj.grade);
-      var $button = $('<button>').text('Delete').addClass('btn btn-danger');
+      var $button = $('<button>').text('Delete').addClass('btn btn-danger deleteStudent');
       $button = $('<td>').append($button);
       var $row = $('<tr>').append($name, $course, $grade, $button).addClass('studentRows');
       $('tbody').append($row);
