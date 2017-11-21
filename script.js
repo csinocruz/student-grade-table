@@ -123,7 +123,7 @@ function renderStudentOnDom(studentObj){
       var $grade = $('<td>').text(studentObj.grade);
       var $button = $('<button>').text('Delete').addClass('btn btn-danger');
       $button = $('<td>').append($button);
-      var $row = $('<tr>').append($name, $course, $grade, $button);
+      var $row = $('<tr>').append($name, $course, $grade, $button).addClass('studentRows');
       $('tbody').append($row);
       console.log('renderStudentOnDom has been called!');
 }
@@ -135,6 +135,7 @@ function renderStudentOnDom(studentObj){
  * @calls renderStudentOnDom, calculateGradeAverage, renderGradeAverage
  */
 function updateStudentList(students){
+      $('.studentRows').remove();
       for (var i=0; i<students.length; i++) {
             renderStudentOnDom(students[i]);
       }
