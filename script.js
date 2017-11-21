@@ -62,7 +62,16 @@ function addClickHandlersToElements(){
        none
  */
 function handleAddClicked(){
-      console.log('add button clicked!');
+      var name = $('#studentName').val();
+      var course = $('#studentCourse').val();
+      var grade = parseInt($('#studentGrade').val());
+      var student = {
+            'name': name,
+            'course': course,
+            'grade': grade
+      }
+      student_array.push(student);
+      renderStudentOnDom(student);
 }
 
 /***************************************************************************************************
@@ -97,8 +106,12 @@ function clearAddStudentFormInputs(){
  * into the .student_list tbody
  * @param {object} studentObj a single student object with course, name, and grade inside
  */
-function renderStudentOnDom(){
+function renderStudentOnDom(studentObj){
+      var row = $('<tr>').append(data);
+      var data = $('<td>').text(studentObj.name);
 
+      $('.student-table.body').append(row);
+      console.log('renderStudentOnDom has been called!');
 }
 
 /***************************************************************************************************
