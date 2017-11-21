@@ -63,6 +63,9 @@ function addClickHandlersToElements(){
  */
 function handleAddClicked(){
       if ($('#studentName').val() === '' || $('#studentCourse').val() === '' || $('#studentGrade').val() === '') {
+            // $('#studentName').addClass('has-error');
+            // $('#studentCourse').addClass('has-error');
+            // $('#studentGrade').addClass('has-error');
             console.log('Must enter in a valid name');
       } else {
             addStudent();
@@ -98,7 +101,6 @@ function addStudent(){
       student_array.push(student);
       clearAddStudentFormInputs();
       updateStudentList(student_array);
-      return student;
 }
 
 /***************************************************************************************************
@@ -119,7 +121,9 @@ function renderStudentOnDom(studentObj){
       var $name = $('<td>').text(studentObj.name);
       var $course = $('<td>').text(studentObj.course);
       var $grade = $('<td>').text(studentObj.grade);
-      var $row = $('<tr>').append($name, $course, $grade);
+      var $button = $('<button>').text('Delete').addClass('btn btn-danger');
+      $button = $('<td>').append($button);
+      var $row = $('<tr>').append($name, $course, $grade, $button);
       $('tbody').append($row);
       console.log('renderStudentOnDom has been called!');
 }
@@ -134,7 +138,6 @@ function updateStudentList(students){
       for (var i=0; i<students.length; i++) {
             renderStudentOnDom(students[i]);
       }
-      
       calculateGradeAverage();
       renderGradeAverage();
       console.log('updateStudentList function has been called!');
