@@ -1,7 +1,23 @@
 $(document).ready(function() {
-      initializeApp()
+      initializeApp(),
+      $('.dataButton').click(function() {
+            console.log('click initiated');
+            $.ajax({
+                  data: {
+                        api_key: 'Q9L2vjKmCy'
+                  },
+                  method: 'POST',
+                  dataType: 'json',
+                  url: 'http://s-apis.learningfuze.com/sgt/get',
+                  success: function(result) {
+                        console.log('AJAX success function called, with the following result: ', result);
+                        ajax_result = result;
+                  }
+            })
+      })
 });
 
+var ajax_result;
 var calculatedGradeAvg = null;
 var student_array = [
       {     name: 'John', 
