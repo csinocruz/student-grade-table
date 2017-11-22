@@ -54,12 +54,9 @@ function addStudent(){
 }
 
 function removeStudent(studentIndexToDelete){
-      //remove student row DOM elements
-
-      //remove object from the global variable student_array
       student_array.splice(studentIndexToDelete, 1);
-      console.log('index: ' + studentIndexToDelete);
-      console.log(student_array);
+      calculateGradeAverage();
+      renderGradeAverage();
 }
 
 function clearAddStudentFormInputs(){
@@ -89,7 +86,6 @@ function renderStudentOnDom(studentObj){
 
       var $row = $('<tr>').append($name, $course, $grade, $dataButton).addClass('studentRows');
       $('tbody').append($row);
-      console.log('renderStudentOnDom has been called!');
 }
 
 function updateStudentList(students){
@@ -99,7 +95,6 @@ function updateStudentList(students){
       }
       calculateGradeAverage();
       renderGradeAverage();
-      console.log('updateStudentList function has been called!');
 }
 
 function calculateGradeAverage(){
@@ -109,13 +104,16 @@ function calculateGradeAverage(){
             sum += student_array[i].grade;
       }
       calculatedGradeAvg = Math.floor(sum/student_array.length);
-      console.log(calculatedGradeAvg);
-      console.log('calculateGradeAverage has been called');
 }
 
 function renderGradeAverage(){
-      $('.avgGrade').text(calculatedGradeAvg);
-      console.log('renderGradeAverage has been called');
+      if (student_array.length === 0) {
+            $('.avgGrade').text('N/A');
+      } else if(isNaN(calculatedGradeAvg)) {
+            $('.avgGrade').text('Error');
+      } else {
+            $('.avgGrade').text(calculatedGradeAvg);
+      }
 }
 
 
