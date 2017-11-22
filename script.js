@@ -1,8 +1,5 @@
 $(document).ready(function() {
-      initializeApp(),
-      $('.student-table-body').click('button', function() {
-            console.log('EVENT DELEGATION SON!!');
-      })
+      initializeApp()
 });
 
 var calculatedGradeAvg = null;
@@ -56,19 +53,42 @@ function addStudent(){
       updateStudentList(student_array);
 }
 
+function removeStudent(studentIndexToDelete){
+      //remove student row DOM elements
+
+      //remove object from the global variable student_array
+      delete student_array[studentIndexToDelete];
+      console.log('index: ' + studentIndexToDelete);
+      console.log(student_array);
+}
+
 function clearAddStudentFormInputs(){
       $('#studentName').val('');
       $('#studentCourse').val('');
       $('#studentGrade').val('');
 }
 
-function renderStudentOnDom(studentObj){
-      var $name = $('<td>').text(studentObj.name);
+function renderStudentOnDom(studentObj, i){
+      var $name   = $('<td>').text(studentObj.name);
       var $course = $('<td>').text(studentObj.course);
-      var $grade = $('<td>').text(studentObj.grade);
-      var $button = $('<button>').text('Delete').addClass('btn btn-danger deleteStudent');
-      $button = $('<td>').append($button);
-      var $row = $('<tr>').append($name, $course, $grade, $button).addClass('studentRows');
+      var $grade  = $('<td>').text(studentObj.grade);
+
+      var $button = $('<button>', {
+            'class': 'btn btn-danger deleteStudent',
+            text: 'Delete',
+            studentIndex: i
+      });
+      var $dataButton = $('<td>').append($button);
+
+      (function() {
+            $($button).on('click', function() {
+                  var studentIndex = $(this).attr('studentIndex');
+                  $(this).parents('tr').remove();
+                  removeStudent(studentIndex);
+            })
+      })();
+
+      var $row = $('<tr>').append($name, $course, $grade, $dataButton).addClass('studentRows');
       $('tbody').append($row);
       console.log('renderStudentOnDom has been called!');
 }
@@ -76,7 +96,7 @@ function renderStudentOnDom(studentObj){
 function updateStudentList(students){
       $('.studentRows').remove();
       for (var i=0; i<students.length; i++) {
-            renderStudentOnDom(students[i]);
+            renderStudentOnDom(students[i], i);
       }
       calculateGradeAverage();
       renderGradeAverage();
