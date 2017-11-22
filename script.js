@@ -123,7 +123,7 @@ function removeStudentFromServer(studentIndexToDelete) {
             dataType: 'json',
             url: 'http://s-apis.learningfuze.com/sgt/delete',
             success: function(result) {
-                  console.log('student removed from server');
+                  ajax_result = result;
             }
       })
 }
