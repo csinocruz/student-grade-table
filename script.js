@@ -21,22 +21,45 @@ function initializeApp(){
 function addClickHandlersToElements(){
       $('.addButton').click(handleAddClicked);
       $('.cancelButton').click(handleCancelClick);
+      $('.dataButton').click(handleDataClicked);
 }
 
 function handleAddClicked(){
-      if ($('#studentName').val() === '' || $('#studentCourse').val() === '' || $('#studentGrade').val() === '') {
-            // $('#studentName').addClass('has-error');
-            // $('#studentCourse').addClass('has-error');
-            // $('#studentGrade').addClass('has-error');
-            console.log('Must enter in a valid name');
+      //NAME
+      if ($('#studentName').val() === '') {
+            $('.name-input').addClass('has-error');
       } else {
+            $('.name-input').removeClass('has-error');
+      } 
+      
+      //GRADE
+      if ($('#studentCourse').val() === '' ) {
+            $('.course-input').addClass('has-error');
+      } else {
+            $('.course-input').removeClass('has-error');
+      }
+      
+      //COURSE
+      if ($('#studentGrade').val() === '') {
+            $('.grade-input').addClass('has-error');
+      } else {
+            $('.grade-input').removeClass('has-error');
+      }
+      
+      if ( $('#studentName').val() !== '' && $('#studentCourse').val() !== '' && $('#studentGrade').val() !== '' ) {
             addStudent();
       }
 }
 
 function handleCancelClick(){
       clearAddStudentFormInputs();
-      console.log('cancel button clicked!');
+      $('.name-input').removeClass('has-error');
+      $('.course-input').removeClass('has-error');
+      $('.grade-input').removeClass('has-error');
+}
+
+function handleDataClicked() {
+      console.log('BIG DADDY DATA');
 }
 
 function addStudent(){
