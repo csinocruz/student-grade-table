@@ -1,34 +1,10 @@
 $(document).ready(function() {
-      initializeApp(),
-      $('.dataButton').click(function() {
-            console.log('click initiated');
-            $.ajax({
-                  data: {
-                        api_key: 'Q9L2vjKmCy'
-                  },
-                  method: 'POST',
-                  dataType: 'json',
-                  url: 'http://s-apis.learningfuze.com/sgt/get',
-                  success: function(result) {
-                        console.log('AJAX success function called, with the following result: ', result);
-                        ajax_result = result;
-                  }
-            })
-      })
+      initializeApp()
 });
 
 var ajax_result;
 var calculatedGradeAvg = null;
-var student_array = [
-      {     name: 'John', 
-            course: 'Magic', 
-            grade: 90
-      },
-      {     name: 'Betty', 
-            course: 'Carpentry', 
-            grade: 90
-      }
-];
+var student_array = [];
 
 function initializeApp(){
       addClickHandlersToElements();
@@ -75,7 +51,29 @@ function handleCancelClick(){
 }
 
 function handleDataClicked() {
-      console.log('BIG DADDY DATA');
+      console.log('click initiated');
+      $.ajax({
+            data: {
+                  api_key: 'Q9L2vjKmCy'
+            },
+            method: 'POST',
+            dataType: 'json',
+            url: 'http://s-apis.learningfuze.com/sgt/get',
+            success: function(result) {
+                  console.log('AJAX success function called, with the following result: ', result);
+                  ajax_result = result;
+
+                  for (var i=0; i<ajax_result.data.length; i++) {
+                        var ajax_student = {
+                              'name': ajax_result.data[i].name,
+                              'course': ajax_result.data[i].course,
+                              'grade': ajax_result.data[i].grade
+                        }
+                        student_array.push(ajax_student);
+                  }
+                  updateStudentList(student_array);
+            }
+      })
 }
 
 function addStudent(){
