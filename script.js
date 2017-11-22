@@ -25,7 +25,6 @@ function addClickHandlersToElements(){
 }
 
 function handleAddClicked(){
-      console.log('add being called');
       //NAME
       if ($('#studentName').val() === '') {
             $('.name-input').addClass('has-error');
