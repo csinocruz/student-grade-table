@@ -57,7 +57,7 @@ function removeStudent(studentIndexToDelete){
       //remove student row DOM elements
 
       //remove object from the global variable student_array
-      delete student_array[studentIndexToDelete];
+      student_array.splice(studentIndexToDelete, 1);
       console.log('index: ' + studentIndexToDelete);
       console.log(student_array);
 }
@@ -68,21 +68,20 @@ function clearAddStudentFormInputs(){
       $('#studentGrade').val('');
 }
 
-function renderStudentOnDom(studentObj, i){
+function renderStudentOnDom(studentObj){
       var $name   = $('<td>').text(studentObj.name);
       var $course = $('<td>').text(studentObj.course);
       var $grade  = $('<td>').text(studentObj.grade);
 
       var $button = $('<button>', {
             'class': 'btn btn-danger deleteStudent',
-            text: 'Delete',
-            studentIndex: i
+            text: 'Delete'
       });
       var $dataButton = $('<td>').append($button);
 
       (function() {
             $($button).on('click', function() {
-                  var studentIndex = $(this).attr('studentIndex');
+                  var studentIndex = student_array.indexOf(studentObj);
                   $(this).parents('tr').remove();
                   removeStudent(studentIndex);
             })
@@ -96,7 +95,7 @@ function renderStudentOnDom(studentObj, i){
 function updateStudentList(students){
       $('.studentRows').remove();
       for (var i=0; i<students.length; i++) {
-            renderStudentOnDom(students[i], i);
+            renderStudentOnDom(students[i]);
       }
       calculateGradeAverage();
       renderGradeAverage();
