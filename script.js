@@ -102,6 +102,7 @@ function addStudentToServer(studentForServer) {
             dataType: 'json',
             url: 'http://s-apis.learningfuze.com/sgt/create',
             success: function(result) {
+                  console.log(result);
                   ajax_result = result;
             }
       })
