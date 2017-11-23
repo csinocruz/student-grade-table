@@ -49,6 +49,7 @@ function handleCancelClick() {
 }
 
 function handleDataClicked() {
+      student_array =[];
       $.ajax({
             data: {
                   api_key: 'Q9L2vjKmCy'
@@ -126,6 +127,7 @@ function removeStudentFromServer(studentIndexToDelete) {
                   ajax_result = result;
             }
       })
+      updateStudentList(student_array);
 }
 
 function clearAddStudentFormInputs() {
@@ -158,7 +160,8 @@ function renderStudentOnDom(studentObj) {
 }
 
 function updateStudentList(students) {
-      $('.studentRows').remove();
+      // $('.studentRows').remove();
+      $('tbody').empty();
       for (var i=0; i<students.length; i++) {
             renderStudentOnDom(students[i]);
       }
