@@ -59,6 +59,7 @@ function handleDataClicked() {
             url: 'http://s-apis.learningfuze.com/sgt/get',
             success: function(result) {
                   ajax_result = result;
+                  console.log('handleDataClicked AJAX call was successful');
 
                   for (var i=0; i<ajax_result.data.length; i++) {
                         var ajax_student = {
@@ -70,11 +71,13 @@ function handleDataClicked() {
                         student_array.push(ajax_student);
                   }
                   updateStudentList(student_array);
+            },
+            error: function(result) {
+                  //executed if the response fails
             }
       })
 }
 
-//adds student to the student_array, then calls updateStudentList which will call renderStudentOnDom
 function addStudent() {
       var name = $('#studentName').val();
       var course = $('#studentCourse').val();
@@ -102,8 +105,12 @@ function addStudentToServer(studentForServer) {
             dataType: 'json',
             url: 'http://s-apis.learningfuze.com/sgt/create',
             success: function(result) {
-                  console.log(result);
                   ajax_result = result;
+                  console.log('addStudentToServer AJAX call was successful');
+                  // studentForServer.id = ajax_result.new_id;
+            },
+            error: function(result) {
+                  //executed if the response fails
             }
       })
 }
@@ -125,7 +132,11 @@ function removeStudentFromServer(studentIndexToDelete) {
             dataType: 'json',
             url: 'http://s-apis.learningfuze.com/sgt/delete',
             success: function(result) {
-                  ajax_result = result;
+                  // ajax_result = result;
+                  console.log('removeStudentFromServer AJAX call was successful');
+            },
+            error: function(result) {
+                  //executed if the response fails
             }
       })
       updateStudentList(student_array);
